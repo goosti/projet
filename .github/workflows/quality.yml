@@ -12,21 +12,21 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - name: Récupérer le dépôt
-          uses: actions/checkout@v7
+          uses: actions/checkout@v4
         - name: Récupérer le cache Composer
           id: composer-cache
           run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
         - name: Installer PHP
           uses: shivammathur/setup-php@v2
           with:
-              phpversion: '8.5'
+              php-version: '8.5'
               extensions: mbstring, intl
         - name: Mise en cache
-          uses: actions/cache@v6
+          uses: actions/cache@v4
           with:
             path: ${{ steps.composer-cache.outputs.dir }}
             key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
-            restore-keys: ${{ runner.os }}-composser-
+            restore-keys: ${{ runner.os }}-composer-
         - name: Installer les dépendances Composer
           run: composer install --no-progress --no-interaction --prefer-dist
         - name: Lancer l'audit de sécurité
@@ -36,10 +36,10 @@ jobs:
         - name: Analyse statique avec PHPStan
           run: vendor/bin/phpstan analyse -c phpstan.dist.neon --no-progress
         - name: Linter Twig
-          run: bin/console lint:twig templates/
+          run: php bin/console lint:twig templates/
         - name: Linter YAML
-          run: bin/console lint:yaml config/
+          run: php bin/console lint:yaml config/
         - name: Linter les containers de services
-          run: bin/console lint:container --no-debug
+          run: php bin/console lint:container --no-debug
         - name: Vérification des entités Doctrine
-          run: bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction
+          run: php bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction
