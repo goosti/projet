@@ -8,7 +8,7 @@ on:
     branches:
       - develop
 jobs:
-  audit:
+  quality:
       runs-on: ubuntu-latest
       steps:
         - name: Récupérer le dépôt
@@ -43,3 +43,13 @@ jobs:
           run: php bin/console lint:container --no-debug
         - name: Vérification des entités Doctrine
           run: php bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction
+  test:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Récupérer le dépôt
+          uses: actions/checkout@v7
+        - name: Récupérer le cache Composer
+          id: composer-cache
+          run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+        - name: Test
+          run: echo "Test de la qualité"
