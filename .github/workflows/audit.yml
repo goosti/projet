@@ -12,7 +12,7 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - name: Récupérer le dépôt
-          uses: acions/checkout@v7
+          uses: actions/checkout@v7
         - name: Récupérer le cache Composer
           id: composer-cache
           run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
