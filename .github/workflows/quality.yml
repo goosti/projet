@@ -140,5 +140,5 @@ jobs:
             context: .
             push: true
             tags: |
-              - ${{ secrets.DOCKERHUB_USERNAME }} /sym-demo-ci-cd:latest
-              - ${{ secrets.DOCKERHUB_USERNAME }} /sym-demo-ci-cd:${{ github.sha }}
+                  ${{ secrets.DOCKERHUB_USERNAME }}/sym-demo-ci-cd:latest
+                  ${{ secrets.DOCKERHUB_USERNAME }}/sym-demo-ci-cd:${{ github.sha }}
