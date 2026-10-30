@@ -142,3 +142,26 @@ jobs:
             tags: |
                   ${{ secrets.DOCKERHUB_USERNAME }}/sym-demo-ci-cd:latest
                   ${{ secrets.DOCKERHUB_USERNAME }}/sym-demo-ci-cd:${{ github.sha }}
+  deploy:
+    runs-on: ubuntu-latest
+    continue-on-error: false
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v7
+      - name: Déployer l'application
+        uses: appleboy/ssh-actions@v1
+        with:
+          host: ${{secrets.SSH_HOST}}
+          username: ${{secrets.SSH_USER}}
+          password: ${{secrets.SSH_PRIVATE_KEY}}
+          port: ${{secrets.SSH_PORT}}
+
+
+
+#**group04**
+
+#_Dernière rotation : 30/10/2026 10:22_
+#```bash
+#ssh -p 2204 admin@13.140.135.144
+#```
+#Mot de passe : `1Z783Lrd10XiZqbSpVAq`
