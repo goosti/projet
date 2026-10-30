@@ -69,7 +69,7 @@ jobs:
         - name: Exécuter les test PHPUnit
           run: php bin/phpunit --log-junit phpunit-report.xml
   test-integration:
-      needs: [test]
+      needs: [quality, test]
       runs-on: ubuntu-latest
       services:
         mysql:
