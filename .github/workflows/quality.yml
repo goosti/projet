@@ -156,7 +156,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-              if [-d ~/app/.git]; then
+              if [-d ~/remi_app/.git]; then
                   cd ~/remi_app
                   git pull
               else
