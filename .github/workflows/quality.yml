@@ -155,6 +155,8 @@ jobs:
           username: ${{secrets.SSH_USER}}
           password: ${{secrets.SSH_PRIVATE_KEY}}
           port: ${{secrets.SSH_PORT}}
+          script: |
+          mkdir: -p testapp
 
 
 
