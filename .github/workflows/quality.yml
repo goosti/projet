@@ -156,14 +156,9 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-              mkdir -p testapp
-
-
-
-#**group04**
-
-#_Dernière rotation : 30/10/2026 10:22_
-#```bash
-#ssh -p 2204 admin@13.140.135.144
-#```
-#Mot de passe : `1Z783Lrd10XiZqbSpVAq`
+              if [-d ~/app/.git]; then
+                  cd ~/app
+                  git pull
+              else
+                  git clone ${{github.server_url}}/${{github.repository}}.git ~/app
+              fi
