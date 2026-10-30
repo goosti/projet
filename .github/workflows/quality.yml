@@ -45,7 +45,6 @@ jobs:
           run: php bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction
   test:
       runs-on: ubuntu-latest
-      needs: [quality]
       steps:
         - name: Récupérer le dépôt
           uses: actions/checkout@v7
@@ -143,6 +142,7 @@ jobs:
                   ${{ secrets.DOCKERHUB_USERNAME }}/sym-demo-ci-cd:latest
                   ${{ secrets.DOCKERHUB_USERNAME }}/sym-demo-ci-cd:${{ github.sha }}
   deploy:
+    needs: [test-integration]
     runs-on: ubuntu-latest
     continue-on-error: false
     steps:
