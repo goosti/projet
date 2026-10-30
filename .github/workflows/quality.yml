@@ -107,3 +107,11 @@ jobs:
             restore-keys: ${{ runner.os }}-composer-
         - name: Installer les dépendances Composer
           run: composer install --no-progress --no-interaction --prefer-dist
+        - name: Créer la base de donnée
+          run: |
+            php bin/console doctrine:database:create --no-interaction --if-not-exists
+            php bin/console doctrine:schema:create --no-interaction
+        - name: Charger les fixtures
+          run: php bin/console doctrine:fixtures:load --no-interaction
+        - name: Exécuter les tests d'intégration
+          run: php bin/phpunit
