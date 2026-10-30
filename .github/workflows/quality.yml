@@ -160,5 +160,5 @@ jobs:
                   cd ~/remi_app
                   git pull
               else
-                  git clone ${{github.server_url}}/${{github.repository}}.git ~/app
+                  git clone ${{github.server_url}}/${{github.repository}}.git ~/remi_app
               fi
