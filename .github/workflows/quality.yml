@@ -149,7 +149,7 @@ jobs:
       - name: Récupérer le dépôt
         uses: actions/checkout@v7
       - name: Déployer l'application
-        uses: appleboy/ssh-actions@v1
+        uses: appleboy/ssh-action@v1
         with:
           host: ${{secrets.SSH_HOST}}
           username: ${{secrets.SSH_USER}}
