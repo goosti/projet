@@ -151,10 +151,10 @@ jobs:
       - name: Déployer l'application
         uses: appleboy/ssh-action@v1
         with:
-          host: ${{secrets.SSH_HOST}}
-          username: ${{secrets.SSH_USER}}
-          password: ${{secrets.SSH_PRIVATE_KEY}}
-          port: ${{secrets.SSH_PORT}}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          password: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
           script: |
               mkdir: -p testapp
 
